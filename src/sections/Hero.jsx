@@ -12,10 +12,10 @@ const Hero = () => {
       ".hero-text h1",
       { y: 50, opacity: 0 },
       {
-        y: 10,
+        y: 0,
         opacity: 1,
-        stagger: 0.3,
-        duration: 1.2,
+        stagger: 1,
+        duration: 2,
         ease: "power2.inOut",
       }
     );

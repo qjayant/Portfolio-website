@@ -12,14 +12,14 @@ const HeroExperience = () => {
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
 
   return (
-    <Canvas camera={{ position: [0, 0,12], fov: 45 }}>
+    <Canvas camera={{ position: [0, 0, 12], fov: 45 }}>
       <ambientLight intensity={0.3} color="#fcf5f5" />
       <directionalLight position={[5, 5, 5]} intensity={2} />
       <spotLight
         position={[0, 3, 10]}
         angle={0.3}
         penumbra={1}
-        intensity={300}
+        intensity={400}
         castShadow
       />
       {/* Configure OrbitControls to disable panning and control zoom based on device type */}
