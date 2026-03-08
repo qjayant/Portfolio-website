@@ -1,10 +1,27 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { words } from "../constants";
 import Button from "../components/Button";
-import HeroExperience from "../components/HeroModels/HeroExperience";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import AnimatedCounter from "../components/AnimatedCounter";
+
+// Lazy load the heavy 3D model component
+const HeroExperience = lazy(
+  () => import("../components/HeroModels/HeroExperience"),
+);
+
+// Sleek loading fallback for the 3D model
+const ModelLoader = () => (
+  <div className="flex-center w-full h-full min-h-[50vh]">
+    <div className="relative flex justify-center items-center">
+      <div className="absolute w-16 h-16 border-4 border-white-50/20 rounded-full animate-ping"></div>
+      <div className="absolute w-12 h-12 border-4 border-t-blue-50 border-r-transparent border-b-transparent border-l-transparent rounded-full animate-spin"></div>
+      <span className="text-white-50 text-sm font-medium mt-24 tracking-widest uppercase">
+        Loading Asset
+      </span>
+    </div>
+  </div>
+);
 
 const Hero = () => {
   useGSAP(() => {
@@ -17,13 +34,13 @@ const Hero = () => {
         stagger: 1,
         duration: 2,
         ease: "power2.inOut",
-      }
+      },
     );
   });
   return (
     <section id="hero" className="relative overflow-hidden ">
       <div className="absolute top-0 left-0 z-10">
-        <img src="/images/bg.png" alt="background" />
+        <img src="/images/bg.webp" alt="background" />
       </div>
       <div className="hero-layout">
         {/* left content */}
@@ -34,9 +51,9 @@ const Hero = () => {
                 Shaping
                 <span className="slide">
                   <span className="wrapper">
-                    {words.map((word) => (
+                    {words.map((word, index) => (
                       <span
-                        key={word.text}
+                        key={index}
                         className="flex items-center md:gap-3 gap-1 pb-2"
                       >
                         <img
@@ -68,7 +85,9 @@ const Hero = () => {
         {/* Right 3D model  */}
         <figure>
           <div className="hero-3d-layout">
-            <HeroExperience />
+            <Suspense fallback={<ModelLoader />}>
+              <HeroExperience />
+            </Suspense>
           </div>
         </figure>
       </div>

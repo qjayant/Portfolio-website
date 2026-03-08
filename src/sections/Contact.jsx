@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import toast from "react-hot-toast";
 
 import TitleHeader from "../components/TitleHeader";
 
@@ -22,17 +23,26 @@ const Contact = () => {
     setLoading(true); // Show loading state
 
     try {
+      // 1. Log to check if Environment Variables are actually loaded by Vite
+      console.log("Checking Env Vars:", {
+        serviceId: import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        templateId: import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        publicKey: import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
+      });
+
       await emailjs.sendForm(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         formRef.current,
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
       );
 
       // Reset form and stop loading
       setForm({ name: "", email: "", message: "" });
+      toast.success("Message Sent Successfully! 🚀");
     } catch (error) {
-      console.error("EmailJS Error:", error); // Optional: show toast
+      console.error("EmailJS Error:", error);
+      toast.error("Failed to send message. Please try again later.");
     } finally {
       setLoading(false); // Always stop loading, even on error
     }
@@ -109,7 +119,7 @@ const Contact = () => {
           <div className="xl:col-span-7 min-h-96">
             <div className=" w-full h-3/4 rounded-3xl overflow-hidden">
               {/* drop your phot here  */}
-              <img src="/images/jayant.png" alt="" />
+              <img src="/images/jayant.webp" alt="" />
             </div>
           </div>
         </div>

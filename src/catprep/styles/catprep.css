@@ -1,0 +1,160 @@
+/* ==========================================================
+   CAT Prep — Scoped Styles
+   All rules are scoped under .catprep-root so they never
+   bleed into the Portfolio site.
+   ========================================================== */
+
+/* Google Fonts Import */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
+
+/* CSS Variables — kept on :root since var names are unique */
+:root {
+  /* Default Dark Theme - Deep Space / Nebula */
+  --bg-dark: #0f172a;
+  --bg-card: rgba(30, 41, 59, 0.7);
+  --bg-glass: rgba(255, 255, 255, 0.05);
+  --bg-sidebar: rgba(15, 23, 42, 0.6);
+  --bg-button: rgba(255, 255, 255, 0.05);
+  --bg-button-hover: rgba(255, 255, 255, 0.1);
+
+  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --secondary-gradient: linear-gradient(135deg, #f43f5e 0%, #fb923c 100%);
+  --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #22d3ee 100%);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-accent: #38bdf8;
+  --text-on-primary: #ffffff;
+
+  /* Glassmorphism Utilities */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --backdrop-blur: 12px;
+
+  /* Typography */
+  --font-main: "Outfit", "Inter", sans-serif;
+  --font-heading: "Outfit", sans-serif;
+
+  /* Spacing */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+
+  --sidebar-border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ---- Scoped base styles (instead of global body/tag resets) ---- */
+
+.catprep-root {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  background-image:
+    radial-gradient(
+      circle at 15% 50%,
+      rgba(99, 102, 241, 0.15) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(168, 85, 247, 0.15) 0%,
+      transparent 25%
+    );
+  background-attachment: fixed;
+  min-height: 100vh;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.catprep-root * {
+  box-sizing: border-box;
+}
+
+.catprep-root h1,
+.catprep-root h2,
+.catprep-root h3,
+.catprep-root h4,
+.catprep-root h5,
+.catprep-root h6 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.catprep-root p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.catprep-root a {
+  color: var(--text-accent);
+  text-decoration: none;
+}
+
+.catprep-root button {
+  font-family: var(--font-main);
+  cursor: pointer;
+}
+
+/* Scrollbar (only inside catprep) */
+.catprep-root ::-webkit-scrollbar {
+  width: 8px;
+}
+.catprep-root ::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+.catprep-root ::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border-radius: 4px;
+  opacity: 0.5;
+}
+.catprep-root ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-primary);
+}
+
+/* ---- Layout: Desktop ---- */
+.catprep-main {
+  flex: 1;
+  margin-left: 280px;
+  padding: 40px;
+  max-width: 1600px;
+  width: 100%;
+}
+
+/* ---- Layout: Mobile (<= 768px) ---- */
+@media (max-width: 768px) {
+  /* Show hamburger */
+  .catprep-hamburger {
+    display: flex !important;
+  }
+
+  /* Show backdrop when open */
+  .catprep-root .catprep-sidebar-backdrop {
+    display: block !important;
+  }
+
+  /* Sidebar off-canvas by default */
+  .catprep-sidebar {
+    transform: translateX(-100%) !important;
+  }
+  .catprep-sidebar.catprep-sidebar--open {
+    transform: translateX(0) !important;
+  }
+
+  /* Main content full width */
+  .catprep-main {
+    margin-left: 0;
+    padding: 24px 16px;
+    padding-top: 72px; /* space for hamburger */
+  }
+
+  /* Achievement popup responsive */
+  .catprep-achievement-popup {
+    left: 16px !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    max-width: none !important;
+  }
+}

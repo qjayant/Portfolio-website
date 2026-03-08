@@ -16,7 +16,7 @@ const AppShowcase = () => {
     gsap.fromTo(
       sectionRef.current,
       { opacity: 0 },
-      { opacity: 1, duration: 1.5 }
+      { opacity: 1, duration: 1.5 },
     );
 
     // Animations for each app showcase
@@ -38,7 +38,7 @@ const AppShowcase = () => {
             trigger: card,
             start: "top bottom-=100",
           },
-        }
+        },
       );
     });
   }, []);
@@ -50,7 +50,7 @@ const AppShowcase = () => {
           <div ref={rydeRef} className="first-project-wrapper">
             <a href="https://greencart-b7xv.vercel.app/" target="_blank">
               <div className="image-wrapper">
-                <img src="/images/greencart.png" alt="greencart" />
+                <img src="/images/greencart.webp" alt="greencart" />
               </div>
             </a>
             <div className="text-content">
@@ -72,7 +72,10 @@ const AppShowcase = () => {
                 target="_blank"
               >
                 <div className="image-wrapper bg-[#FFEFDB]">
-                  <img src="/images/c-store.png" alt="Product store" />
+                  <img
+                    src="/images/c-store.webp"
+                    alt="C-Store Product Store Landing Page Preview"
+                  />
                 </div>
               </a>
               <h2>C-Store- A Commodity store website</h2>
@@ -81,7 +84,10 @@ const AppShowcase = () => {
             <div className="project" ref={ycDirectoryRef}>
               <a href="https://qjayant.github.io/Rental-X/" target="_blank">
                 <div className="image-wrapper bg-[#FFE7EB]">
-                  <img src="/images/rental.png" alt="car rentals" />
+                  <img
+                    src="/images/rental.webp"
+                    alt="RentalX Car Rentals Application Preview"
+                  />
                 </div>
               </a>
               <h2>RentalX - A Car rent Showcase website</h2>
