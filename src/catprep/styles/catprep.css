@@ -157,4 +157,12 @@
     bottom: 16px !important;
     max-width: none !important;
   }
+
+  /* Mobile Pomodoro timer top right, absolute so it scrolls away */
+  .catprep-pomodoro {
+    position: absolute !important;
+    top: 16px;
+    right: 16px;
+    z-index: 55; /* Below hamburger (60) but above backdrop */
+  }
 }

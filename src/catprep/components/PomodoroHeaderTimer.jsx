@@ -48,6 +48,7 @@ const PomodoroHeaderTimer = () => {
 
   return (
     <div
+      className="catprep-pomodoro"
       style={{ position: "relative", zIndex: 100 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
